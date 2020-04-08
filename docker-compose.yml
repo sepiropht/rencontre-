@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web:
+    container_name: "web"
+    build: ./front
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./front:/home/node/code
+      - /home/node/code/node_modules
+    links:
+      - api
+  api:
+    build: .
+    container_name: "api"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/home/node/code
+      - /home/node/code/node_modules
+    links:
+      - db
+  db:
+    image: "postgres:12"
+    container_name: "db"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg/db_data:/var/lib/postgresql/data 

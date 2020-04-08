@@ -21,7 +21,7 @@ class App extends Component {
     ));
     return (
       <div>
-        <h1>aaaaaa</h1>
+        <h1>Hello World</h1>
         <ol>{data}</ol>
       </div>
     );
